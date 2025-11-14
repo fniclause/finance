@@ -1,0 +1,26 @@
+name: Test Self-Hosted Runner
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: self-hosted
+
+    steps:
+      - name: Step 1 — Runner opérationnel
+        run: echo "🎉 Le self-hosted runner fonctionne !"
+
+      - name: Step 2 — Infos système
+        run: |
+          echo "Hostname : $(hostname)"
+          echo "OS : $(uname -a)"
+
+      - name: Step 3 — Vérifier accès disque local
+        run: |
+          echo "Test écrit le $(date)" > test_runner_output.txt
+          echo "Fichier créé dans : $(pwd)"
+          ls -l
+
+      - name: Step 4 — Voir le contenu du fichier
+        run: cat test_runner_output.txt
